@@ -155,6 +155,8 @@ $(document).ready(function() {
                 await selectionSort();
             else if(algo_selected == "Insertion Sort")
                 await insertionSort();
+            else if(algo_selected == "Merge Sort")
+                await mergeSort();
             else {
                 $("#no-algo-warning").removeClass('display-none');
                 $("#no-algo-warning").addClass('display-flex');
@@ -171,7 +173,7 @@ $(document).ready(function() {
         createArray();
     });
 
-    $("#speed-slider").on('input', function() {
+    $("#speed-slider").on('inpt', function() {
         delay = WAITING_TIME * Math.pow(2, MAX_SPEED - $(this).val());
     });
 
@@ -187,5 +189,23 @@ $(document).ready(function() {
                 $("#e" + i).css('margin-right', margin_element + 'px');
             }
         }
+    });
+    // Dark Mode and Light Mode Toggle
+    let isDarkMode = true;
+
+    function toggleMode() {
+        isDarkMode = !isDarkMode; 
+
+        if (isDarkMode) {
+            $("body").removeClass("light-mode");
+            $("body").addClass("dark-mode");
+        } else {
+            $("body").removeClass("dark-mode");
+            $("body").addClass("light-mode");
+        }
+    }
+
+    $("#mode-toggle").click(function() {
+        toggleMode();
     });
 });
